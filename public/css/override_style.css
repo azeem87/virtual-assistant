@@ -1,0 +1,20 @@
+.admin-ans a{
+    color: #ffffff;
+}
+
+.admin-ans a:HOVER {
+    color: #ffffff;
+}
+.admin-ans a:VISITED {
+    color: #ffffff;
+}
+
+.recommedtag {
+    color: #da6b39 !important;
+}
+
+.chat-input .form-control:focus {
+    outline: none !important;
+    border:2px solid red;
+    box-shadow: 0 0 10px #719ECE;
+}

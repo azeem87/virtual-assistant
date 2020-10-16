@@ -1,0 +1,28 @@
+@charset "utf-8";
+/* CSS Document */
+*
+
+
+/************************************************************************************
+Conditions
+*************************************************************************************/
+.header{
+	width:100%;
+	}
+.faq, .chat, .col-sm-6{
+	width:50%;
+	float:left;
+	}
+
+.container {
+    width: 1100px !important;
+	}
+
+.modal-dialog {
+    margin: 30px auto !important;
+    width: 600px !important;
+	position:relative;
+}
+
+.date-wid button{	
+	margin-top:-6px !important;}

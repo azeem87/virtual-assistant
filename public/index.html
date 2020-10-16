@@ -1,0 +1,149 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+  <head>
+    <title>Emirates Chatbot</title>
+    <script type="text/javascript">
+      //Function to hide the loading div
+      function loadingDivHide() {
+        $("#loading_div").css("display", "none");
+        $("#content_area_div").css("display", "");
+      }
+
+      function deleteFile() {
+        $("#file-input").val("");
+        document.querySelector("#file-name").innerHTML = "";
+      }
+
+      // Function for ajax call
+      function formSubmit() {
+        var data;
+
+        data = new FormData();
+        data.append("file", $("#file-input")[0].files[0]);
+        // append the pnr
+        data.append("pnr", "123456");
+      }
+
+      function showname() {
+        var name = document.getElementById("file-input");
+        // alert('Selected file: ' + name.files.item(0).name);
+        var fileName = name.files.item(0).name;
+        /*document.querySelector("#file-name").innerHTML =
+          '<span id="file-sucess"> Click send button below to upload the file</span><div id="filelist"><span>' +
+          fileName +
+          '</span><span onclick="deleteFile()" class="delete-file"> X</span></div>';
+        */
+        //document.getElementById("form-attachment").submit();
+        // call form submit
+        formSubmit();
+      }
+    </script>
+
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="css/bootstrap-theme.min.css" rel="stylesheet" type="text/css" />
+    <link href="css/jquery-ui.css" rel="stylesheet" type="text/css" />
+
+    <meta name="_csrf" content="${_csrf.token}" />
+    <meta name="_csrf_header" content="${_csrf.headerName}" />
+    <meta content="IE=edge" http-equiv="X-UA-Compatible" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+    />
+
+    <style type="text/css">
+      .loaderClass {
+        position: absolute;
+        top: 100px;
+        left: 0px;
+        z-index: 999999;
+        text-align: center;
+        width: 100%;
+        height: 200px;
+      }
+    </style>
+
+    <link href="css/va_style.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <!--     these are chat contents-->
+
+    <div id="content_area_div">
+      <div class="chat-wrapper">
+        <div class="minimized-chat" style="display: none">
+          <img class="chat_avatar" alt="Assistant" src="img/ek_agent.svg" />
+          <div class="admin-title">Emirates Virtual Agent</div>
+        </div>
+
+        <div class="capital-bg"></div>
+        <div class="chat-container">
+          <div class="chat-header">
+            <img class="chat_avatar" alt="Assistant" src="img/ek_agent.svg" />
+            <div class="admin-title">Emirates Virtual Agent</div>
+          </div>
+
+          <div class="chat-answers">
+            <div class="chat-box">
+              <ul></ul>
+
+              <div class="clear"></div>
+            </div>
+
+            <div id="suggestionDiv" style="overflow-y: auto"></div>
+          </div>
+
+          <div class="clear"></div>
+
+          <div class="chat-input">
+            <div id="file-name"></div>
+            <div class="input-group">
+              <input
+                id="queryBox"
+                type="text"
+                class="form-control"
+                placeholder="Type your question here"
+              />
+              <div class="input-group-btn attachment">
+                <label for="file-input">
+                  <svg
+                    version="1.1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xml:space="preserve"
+                    viewBox="0 0 100 100"
+                  >
+                    <path
+                      class="cx-svg-icon-tone1"
+                      d="M64.7,35.7l-6.3-6.3L30.6,57.3c-5.2,5.2-5.2,13.6,0,18.8c5.2,5.2,13.6,5.2,18.8,0l37.7-37.7c8.7-8.7,8.7-22.7,0-31.4c-8.7-8.7-22.7-8.5-31.4,0.2c0,0-39.6,39.6-39.7,39.7C4,59,4,78.5,16.1,90.6c12.1,12.1,31.7,12,43.8-0.1c0,0,0-0.1,0.1-0.1v0l27-27l-6.3-6.3l-27,27l0,0c0,0-0.1,0.1-0.1,0.1c-8.6,8.6-22.6,8.6-31.2,0s-8.6-22.6,0-31.2c0,0,0.1-0.1,0.1-0.1l0,0L62,13.3c5.2-5.2,13.7-5.2,18.8,0c5.2,5.2,5.2,13.7,0,18.8L43.2,69.8c-1.7,1.7-4.5,1.7-6.3,0c-1.7-1.7-1.7-4.5,0-6.3L64.7,35.7z"
+                    ></path>
+                  </svg>
+                </label>
+                <form id="form-attachment">
+                  <input type="hidden" name="pnr" value="1234567" />
+                  <input
+                    id="file-input"
+                    type="file"
+                    name="filename"
+                    onchange="showname()"
+                  />
+                </form>
+              </div>
+              <span class="input-group-btn">
+                <button id="sendbtn" class="btn btn-link" type="button">
+                  <span aria-hidden="true">Send</span>
+                </button>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div style="clear: both"></div>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="js/jquery-1.9.0.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/jquery-ui.js"></script>
+    <script type="text/javascript" src="js/chat_script.js"></script>
+  </body>
+</html>
