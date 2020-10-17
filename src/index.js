@@ -69,12 +69,12 @@ app.post('/upload', (req, res) => {
       console.error(err);
 	   res.status(400).send('No files were uploaded.');
     }
-      const fileContent = fs.readFileSync(files.userdoc.path)
+      const fileContent = fs.readFileSync(files.file.path)
       const s3Params = {
           Bucket: process.env.AWS_BUCKET,
-          Key: `${Date.now().toString()}-${files.userdoc.name}`,
+          Key: `${Date.now().toString()}-${files.file.name}`,
           Body: fileContent,
-          ContentType: files.userdoc.type,
+          ContentType: files.file.type,
           ACL: 'public-read'
       }
       const s3Content = await s3Upload(s3Params);
@@ -85,14 +85,24 @@ app.post('/upload', (req, res) => {
      // res.send( { title: 'Upload Results', formData });
 
       if(formData["Referral Clinic"] == undefined || formData["Released On"] == undefined ){
-          return res.send(" Your document is incorrect, Please upload pcr document ");
+          return res.send({ isspelledcorrectly: true, response: "Your document is incorrect, Please upload pcr document  " });
+      }
+
+      if(formData["Request Date"] != undefined){
+          const requestDate = new Date(formData["Request Date"].trim());
+          const date2 = new Date();
+          const diffTime = Math.abs(date2 - requestDate);
+          const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+          if(diffDays>4){
+              return res.send({ isspelledcorrectly: true, response: "Your Document has expired " });
+          }
       }
 
       if(formData["Referral Clinic"].trim() !== "HealthHub Qusais"){
-          return res.send(" This clinic is not authorized ");
+          return res.send({ isspelledcorrectly: true, response: "This clinic is not authorized " });
       }
 
-      return res.send("All good, documents are verified. Please proceed for checkin ");
+      return res.send({ isspelledcorrectly: true, response: "All good, documents are verified. Please proceed for checkin " });
   })
 });
 

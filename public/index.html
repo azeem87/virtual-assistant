@@ -22,7 +22,22 @@
         data = new FormData();
         data.append("file", $("#file-input")[0].files[0]);
         // append the pnr
-        data.append("pnr", "123456");
+       // data.append("pnr", "123456");
+
+        $.ajax({
+          url: "/upload",
+          data: data,
+          processData: false,
+          type: "POST",
+          contentType: false,
+          success: function (data) {
+            console.log(data)
+            // clear the existing form data
+            $("#file-input").val("");
+
+            onAICalBack(JSON.stringify(data));
+          },
+        });
       }
 
       function showname() {
