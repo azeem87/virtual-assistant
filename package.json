@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "dev": "nodemon --inspect --exec babel-node -r ./node_modules/dotenv/config src/index.js",
-    "build": "babel src/ -d build --copy-files",
+    "build": "npm install && babel src/ -d build --copy-files",
     "start": "node build/index.js"
   },
   "author": "",
