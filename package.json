@@ -21,7 +21,8 @@
     "express": "^4.17.1",
     "express-async-handler": "^1.1.4",
     "lodash": "^4.17.15",
-    "morgan-body": "^2.4.14"
+    "morgan-body": "^2.4.14",
+	"formidable": "^1.2.2"
   },
   "devDependencies": {
     "@babel/cli": "^7.8.4",
@@ -33,7 +34,6 @@
     "babel-eslint": "^8.2.6",
     "dotenv": "^8.2.0",
     "express-fileupload": "^1.2.0",
-    "formidable": "^1.2.2",
     "nodemon": "^2.0.4",
     "prettier": "^1.19.1",
     "rimraf": "^3.0.2"
