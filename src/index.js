@@ -41,7 +41,10 @@ app.post(`/ai/va`,(req,res,next) => {
     }
 
     if(req.body?.query.toLowerCase() === 'a12345'){
-        res.send( { isspelledcorrectly: true,qresolved:true, response: 'Do you have a printed negative certificate for a COVID-19 PCR test taken within 96 hours before departure?' });
+        res.send( { isspelledcorrectly: true,qresolved:true, 
+		response: `1. Do you have a printed negative certificate for a COVID-19 PCR test taken within 96 hours before departure? <br>
+		 2. The certificate must be for a polymerase chain reaction (PCR) test. <br>
+		 3. You must have return approval from the General Directorate of Residency and Foreigners Affairs.`});
         return;
     }
 
