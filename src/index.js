@@ -48,7 +48,7 @@ app.post(`/ai/va`,(req,res,next) => {
         return;
     }
 
-    if(req.body?.prevresp === 'Do you have a printed negative certificate for a COVID-19 PCR test taken within 96 hours before departure?'  && req.body?.query.toLowerCase() === 'yes'){
+    if(req.body?.prevresp.indexOf('Do you have a printed negative certificate for a COVID-19 PCR test taken within 96 hours before departure?') > 1  && req.body?.query.toLowerCase() === 'yes'){
         res.send( { isspelledcorrectly: true,qresolved:true,  response: 'Please upload the document' });
         return;
     }
